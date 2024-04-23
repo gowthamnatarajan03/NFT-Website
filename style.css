@@ -14,6 +14,14 @@ body {
     
 }
 
+#preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #150432;
+  z-index: 9999;
+}
+
 .intro {
   position: fixed;
   z-index: 2;
