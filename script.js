@@ -163,15 +163,32 @@ function toggleNavbarColor() {
 
 ////ForeImagesMouseMove
 
-document.addEventListener("mousemove", parallax);
-        function parallax(event) {
-            this.querySelectorAll(".fore-images .fore-image").forEach((shift => {
-                const position = shift.getAttribute("data-value");
-                const x = (window.innerWidth - event.pageX * position) / 90;
-                const y = (window.innerHeight - event.pageY * position) / 90;
-                shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            }));
-        }
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.innerWidth >= 768) {
+      document.addEventListener("mousemove", parallax);
+  }
+});
+
+function parallax(event) {
+  document.querySelectorAll(".fore-images .fore-image").forEach((shift) => {
+      const position = shift.getAttribute("data-value");
+      const x = (window.innerWidth - event.pageX * position) / 90;
+      const y = (window.innerHeight - event.pageY * position) / 90;
+      shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
+  });
+}
+
+// Remove event listener when screen size is smaller than 768px
+window.addEventListener("resize", function() {
+  if (window.innerWidth < 768) {
+      document.removeEventListener("mousemove", parallax);
+  } else {
+      document.addEventListener("mousemove", parallax);
+  }
+});
+
+
+
 
 ////Ripple Effect Button
 
@@ -422,18 +439,12 @@ function updateFiatName(selectedFiat) {
 // initialize dropdowns
 async function initializeDropdowns() {
     await addFiatOptions();
-
-    // After the dropdown is populated, initialize it
     document.querySelector(".select-btn2").addEventListener("click", function() {
         const wrapper = document.querySelector(".wrapper2");
         wrapper.classList.toggle("active");
     });
 }
-
-// Event listener for the convert button
 document.getElementById("convertBtn").addEventListener("click", convertEthToFiat);
-
-// Event listeners for opening/closing dropdowns
 document.addEventListener("DOMContentLoaded", initializeDropdowns);
 
 // handle conversion and display result
@@ -454,7 +465,6 @@ async function convertEthToFiat() {
         }
         const data = await response.json();
         
-        // Check if the conversion rate exists
         if (!data.ethereum || !data.ethereum[selectedFiat]) {
             throw new Error("Conversion rate not available.");
         }
@@ -557,3 +567,44 @@ backButton.addEventListener("click", function() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 });
+
+//// CSSFunction
+
+function handleResize() {
+  let screenWidth = window.innerWidth;
+  let imageWidth = screenWidth;
+  let mainWidth = screenWidth;
+  let footerWidth = screenWidth;
+
+  if (screenWidth >= 1925 && screenWidth <= 2560) {
+      document.querySelector('.image-container img').style.width = imageWidth + 'px';
+      document.querySelector('main').style.width = mainWidth + 'px';
+      document.querySelector('footer').style.width = footerWidth + 'px';
+      document.querySelector('.fore-images').style.display = 'none';
+      document.querySelector('.image-container h1').style.fontSize = '100px';
+      document.querySelector('.image-container h1').style.top = '20%';
+      document.querySelector('.image-container p').style.fontSize = '50px';
+      document.querySelector('.image-container p').style.top = '40%';
+      document.querySelector('.image-container p').style.width = '70%';
+      document.querySelector('.image-container a').style.fontSize = '30px';
+      document.querySelector('.slider-rows').style.width = '65%';
+      document.querySelector('.slider-rows').style.margin = '0 auto';
+      document.querySelector('.faq-container').style.width = '1680px';
+  } else {
+      document.querySelector('.image-container img').style.width = '';
+      document.querySelector('main').style.width = '';
+      document.querySelector('footer').style.width = '';
+      document.querySelector('.fore-images').style.display = '';
+      document.querySelector('.image-container h1').style.fontSize = '';
+      document.querySelector('.image-container h1').style.top = '';
+      document.querySelector('.image-container p').style.top = '';
+      document.querySelector('.image-container p').style.fontSize = '';
+      document.querySelector('.image-container p').style.width = '';
+      document.querySelector('.image-container a').style.fontSize = '';
+      document.querySelector('.slider-rows').style.width = '';
+      document.querySelector('.slider-rows').style.margin = '';
+      document.querySelector('.faq-container').style.width = '';
+  }
+}
+handleResize();
+window.addEventListener('resize', handleResize);
