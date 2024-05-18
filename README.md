@@ -3,6 +3,10 @@
 ## Description
 LumeNFT Website is a personalized NFT showcase designed to display exclusive digital artworks. Developed Using JavaScript, BootStrap5, CSS, HTML.
 
+**[LIVE DEMO](https://lumenft.netlify.app/)**
+
+![lumenft-homepage](https://github.com/gowthamnatarajan03/NFT-Website/assets/165258291/b2145582-e911-48ba-9dde-679dcc397887)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Features](#features)
