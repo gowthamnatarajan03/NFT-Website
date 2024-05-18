@@ -5,7 +5,7 @@ LumeNFT Website is a personalized NFT showcase designed to display exclusive dig
 
 **[LIVE DEMO](https://lumenft.netlify.app/)**
 
-![lumenft-homepage](https://github.com/gowthamnatarajan03/NFT-Website/assets/165258291/b2145582-e911-48ba-9dde-679dcc397887)
+![lumenft-home](https://github.com/gowthamnatarajan03/NFT-Website/assets/165258291/b5d5f1c1-0994-4255-bb13-bf5448775923)
 
 ## Table of Contents
 - [Installation](#installation)
